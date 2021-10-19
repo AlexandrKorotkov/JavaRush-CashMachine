@@ -29,4 +29,14 @@ public class CurrencyManipulator {
         }
     }
 
+    /*
+    Считает общую сумму для указанной валюты.
+     */
+    public int getTotalAmount() {
+        int sum=0;
+        for (Map.Entry<Integer, Integer> pair : denominations.entrySet()) {
+            sum+=pair.getKey()*pair.getValue();
+        }
+        return sum;
+    }
 }

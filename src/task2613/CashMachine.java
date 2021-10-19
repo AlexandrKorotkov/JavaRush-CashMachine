@@ -20,6 +20,7 @@ public class CashMachine {
         CurrencyManipulator currencyManipulator = CurrencyManipulatorFactory.getManipulatorByCurrencyCode(code);
         String[] arr = ConsoleHelper.getValidTwoDigits(code);
         currencyManipulator.addAmount(Integer.parseInt(arr[0]), Integer.parseInt(arr[1]));
+        currencyManipulator.getTotalAmount();
         //хардкодинг закончен
     }
 }
