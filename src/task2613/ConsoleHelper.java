@@ -43,15 +43,30 @@ public class ConsoleHelper {
      */
     public static String[] getValidTwoDigits(String currencyCode) {
         while (true) {
-            ConsoleHelper.writeMessage("Введите требуемый номинал и количество купюр в " + currencyCode+": ");
+            ConsoleHelper.writeMessage("Введите требуемый номинал и количество купюр в " + currencyCode + ": ");
             String s = ConsoleHelper.readString();
             String[] arr = s.split(" ");
             try {
                 Integer i1 = Integer.parseInt(arr[0]);
                 Integer i2 = Integer.parseInt(arr[1]);
-                if (i1 >0 & i2 >0) return arr;
+                if (i1 > 0 & i2 > 0) return arr;
             } catch (Exception e) {
                 ConsoleHelper.writeMessage("Данные некорректны. Повторите.");
+            }
+        }
+    }
+
+    /*
+    Запрос операции у пользователя. Принимает значения [1:4], иначе IllegalArgumentException.
+     */
+    public static Operation askOperation() {
+        while (true) {
+            writeMessage("Введите номер операции (1 - INFO, 2 - DEPOSIT, 3 - WITHDRAW, 4 - EXIT): ");
+            try {
+                Integer i = Integer.parseInt(readString());
+                return Operation.getAllowableOperationByOrdinal(i);
+            } catch (IllegalArgumentException e) {
+                writeMessage("Неверная операция. Повторите.");
             }
         }
     }
