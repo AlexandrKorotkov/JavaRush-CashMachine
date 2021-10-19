@@ -1,5 +1,6 @@
 package task2613;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,5 +24,11 @@ public class CurrencyManipulatorFactory {
     }
 
     private CurrencyManipulatorFactory() {
+    }
+    /*
+    Возвращает массив всех манипуляторов из существубщих валют.
+     */
+    public static Collection<CurrencyManipulator> getAllCurrencyManipulators(){
+        return map.values();
     }
 }

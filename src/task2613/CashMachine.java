@@ -1,5 +1,7 @@
 package task2613;
 
+import task2613.command.CommandExecutor;
+
 import java.util.Locale;
 
 /*
@@ -13,14 +15,10 @@ import java.util.Locale;
 public class CashMachine {
     public static void main(String[] args) {
         Locale.setDefault(Locale.ENGLISH);
-        /*
-        хардкодинг п1 задачи №4.
-         */
-        String code = ConsoleHelper.askCurrencyCode();
-        CurrencyManipulator currencyManipulator = CurrencyManipulatorFactory.getManipulatorByCurrencyCode(code);
-        String[] arr = ConsoleHelper.getValidTwoDigits(code);
-        currencyManipulator.addAmount(Integer.parseInt(arr[0]), Integer.parseInt(arr[1]));
-        currencyManipulator.getTotalAmount();
-        //хардкодинг закончен
+        Operation operation;
+        do {
+            CommandExecutor.execute(operation = ConsoleHelper.askOperation());
+        } while (operation != Operation.EXIT);
+
     }
 }
