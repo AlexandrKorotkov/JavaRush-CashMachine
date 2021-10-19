@@ -1,5 +1,7 @@
 package task2613;
 
+import java.util.Locale;
+
 /*
 Операции, которые будем поддерживать, следующие:
 поместить деньги, снять деньги, показать состояние банкомата.
@@ -10,6 +12,14 @@ package task2613;
  */
 public class CashMachine {
     public static void main(String[] args) {
-
+        Locale.setDefault(Locale.ENGLISH);
+        /*
+        хардкодинг п1 задачи №4.
+         */
+        String code = ConsoleHelper.askCurrencyCode();
+        CurrencyManipulator currencyManipulator = CurrencyManipulatorFactory.getManipulatorByCurrencyCode(code);
+        String[] arr = ConsoleHelper.getValidTwoDigits(code);
+        currencyManipulator.addAmount(Integer.parseInt(arr[0]), Integer.parseInt(arr[1]));
+        //хардкодинг закончен
     }
 }

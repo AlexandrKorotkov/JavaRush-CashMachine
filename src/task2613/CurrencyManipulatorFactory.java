@@ -15,13 +15,11 @@ public class CurrencyManipulatorFactory {
     Создает новые манипуляторы, если их нет в хранилище манипуляторов map.
      */
     public static CurrencyManipulator getManipulatorByCurrencyCode(String currencyCode) {
-        String code = currencyCode.toLowerCase();
-        if (map.containsKey(code)) {
-            return map.get(code);
-        } else {
+        String code = currencyCode.toUpperCase();
+        if (!map.containsKey(code)) {
             map.put(code, new CurrencyManipulator(code));
-            return map.get(code);
         }
+        return map.get(code);
     }
 
     private CurrencyManipulatorFactory() {
