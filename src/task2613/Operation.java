@@ -1,7 +1,7 @@
 package task2613;
 
 public enum Operation {
-    INFO, DEPOSIT, WITHDRAW, EXIT;
+    LOGIN, INFO, DEPOSIT, WITHDRAW, EXIT;
     public static Operation getAllowableOperationByOrdinal(Integer i){
         switch (i){
             case 1: return INFO;

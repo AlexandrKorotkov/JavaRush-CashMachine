@@ -17,14 +17,13 @@ public class CashMachine {
     public static void main(String[] args) {
         Locale.setDefault(Locale.ENGLISH);
         try {
+            CommandExecutor.execute(Operation.LOGIN);
             Operation operation;
             do {
                 CommandExecutor.execute(operation = ConsoleHelper.askOperation());
             } while (operation != Operation.EXIT);
         } catch (InterruptOperationException e) {
             ConsoleHelper.writeMessage("До свидания");
-
         }
-
     }
 }
