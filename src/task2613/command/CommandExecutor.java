@@ -1,6 +1,7 @@
 package task2613.command;
 
 import task2613.Operation;
+import task2613.exception.InterruptOperationException;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -18,7 +19,7 @@ public class CommandExecutor {
         allKnownCommandsMap.put(Operation.EXIT, new ExitCommand());
     }
 
-    public static final void execute(Operation operation) {
+    public static final void execute(Operation operation) throws InterruptOperationException {
         allKnownCommandsMap.get(operation).execute();
     }
 

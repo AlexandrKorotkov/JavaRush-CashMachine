@@ -1,6 +1,7 @@
 package task2613;
 
 import task2613.command.CommandExecutor;
+import task2613.exception.InterruptOperationException;
 
 import java.util.Locale;
 
@@ -15,10 +16,15 @@ import java.util.Locale;
 public class CashMachine {
     public static void main(String[] args) {
         Locale.setDefault(Locale.ENGLISH);
-        Operation operation;
-        do {
-            CommandExecutor.execute(operation = ConsoleHelper.askOperation());
-        } while (operation != Operation.EXIT);
+        try {
+            Operation operation;
+            do {
+                CommandExecutor.execute(operation = ConsoleHelper.askOperation());
+            } while (operation != Operation.EXIT);
+        } catch (InterruptOperationException e) {
+            ConsoleHelper.writeMessage("До свидания");
+
+        }
 
     }
 }

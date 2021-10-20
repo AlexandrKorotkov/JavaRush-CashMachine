@@ -1,5 +1,7 @@
 package task2613;
 
+import task2613.exception.InterruptOperationException;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -14,12 +16,13 @@ public class ConsoleHelper {
         System.out.println(message);
     }
 
-    //метод такой по заданию.
-    public static String readString() {
+    public static String readString() throws InterruptOperationException {
         String in = "";
         try {
             in = bis.readLine();
+            if (in.equalsIgnoreCase("exit")) throw new InterruptOperationException();
         } catch (IOException e) {
+            //по заданию "ничего не делать при возникновении исключения".
         }
         return in;
     }
@@ -27,8 +30,8 @@ public class ConsoleHelper {
     /*
     Запрашивает у пользователя код валюты и проверят правильность ввода.
      */
-    public static String askCurrencyCode() {
-        String code = "";
+    public static String askCurrencyCode() throws InterruptOperationException {
+        String code;
         while (true) {
             writeMessage("Введите код валюты, состоящий из 3-х символов: ");
             code = readString();
@@ -41,14 +44,14 @@ public class ConsoleHelper {
     /*
     Предлагает ввести 2 целых положительных числа. Первое - номинал, второе - количество банкнот.
      */
-    public static String[] getValidTwoDigits(String currencyCode) {
+    public static String[] getValidTwoDigits(String currencyCode) throws InterruptOperationException {
         while (true) {
             ConsoleHelper.writeMessage("Введите требуемый номинал и количество купюр в " + currencyCode + ": ");
             String s = ConsoleHelper.readString();
             String[] arr = s.split(" ");
             try {
-                Integer i1 = Integer.parseInt(arr[0]);
-                Integer i2 = Integer.parseInt(arr[1]);
+                int i1 = Integer.parseInt(arr[0]);
+                int i2 = Integer.parseInt(arr[1]);
                 if (i1 > 0 & i2 > 0) return arr;
             } catch (Exception e) {
                 ConsoleHelper.writeMessage("Данные некорректны. Повторите.");
@@ -59,7 +62,7 @@ public class ConsoleHelper {
     /*
     Запрос операции у пользователя. Принимает значения [1:4], иначе IllegalArgumentException.
      */
-    public static Operation askOperation() {
+    public static Operation askOperation() throws InterruptOperationException {
         while (true) {
             writeMessage("Введите номер операции (1 - INFO, 2 - DEPOSIT, 3 - WITHDRAW, 4 - EXIT): ");
             try {
